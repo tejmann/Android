@@ -7,7 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class JsonReader {
     private static String TAG="JSONREADER ACTIVITY";
@@ -22,7 +25,18 @@ public class JsonReader {
         while(i<results.length()){
             JSONObject item=(JSONObject) results.get(i);
             String title =item.getString("webTitle");
-            String date=item.getString("webPublicationDate");
+            SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyy-mm-dd");
+            String dateRecieved=item.getString("webPublicationDate");
+            String date=null;
+            try {
+                Date dateparsed = simpleDateFormat.parse(dateRecieved);
+                date= simpleDateFormat.format(dateparsed);
+                Log.i("JSON READER ","exception");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+           // String date=item.getString("webPublicationDate");
             String wurl=item.getString("webUrl");
             String imageUrl;
             JSONObject fields=new JSONObject();
