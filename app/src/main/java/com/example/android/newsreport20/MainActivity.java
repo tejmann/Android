@@ -37,13 +37,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
-    private MenuItem menuItem;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //checks the network connection
         ConnectivityManager connectivityManager=(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
         if(!(networkInfo!=null&&networkInfo.isConnectedOrConnecting())){
@@ -58,18 +58,16 @@ public class MainActivity extends AppCompatActivity {
         }
         setTitle(R.string.latest);
         All fragmentall= new All();
+        //begins fragment transaction
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment,fragmentall).commit();
-////        ViewPager viewPager = findViewById(R.id.viewpager);
-//        PagerAdapter pagerAdapter = new PageAdapter(getSupportFragmentManager());
-//        viewPager.setAdapter(pagerAdapter);
-//        TabLayout tabLayout = findViewById(R.id.tab);
-//        tabLayout.setupWithViewPager(viewPager);
         drawerLayout = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                //navigation drawer working
+                //Can go from one fragment to other by using navigation drawer.
                 Fragment currentFragment=getSupportFragmentManager().findFragmentById(R.id.fragment);
                 menuItem.setChecked(true);
                 String title = (String) menuItem.getTitle();
@@ -82,16 +80,16 @@ public class MainActivity extends AppCompatActivity {
                         All fragmentall = new All();
                         FragmentTransaction fragmentTransaction1=getSupportFragmentManager().beginTransaction();
                         fragmentTransaction1.replace(R.id.fragment,fragmentall).commit();
-                    drawerLayout.closeDrawers();}
+                        drawerLayout.closeDrawers();}
 
                 } else if (title.equals(getString(R.string.business))) {
                     setTitle(R.string.business);
                     if(currentFragment instanceof Business1){drawerLayout.closeDrawers();}
                     else{
-                    Business1 fragmentbusiness = new Business1();
-                    FragmentTransaction fragmentTransaction1=getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction1.replace(R.id.fragment,fragmentbusiness).commit();
-                    drawerLayout.closeDrawers();}
+                        Business1 fragmentbusiness = new Business1();
+                        FragmentTransaction fragmentTransaction1=getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction1.replace(R.id.fragment,fragmentbusiness).commit();
+                        drawerLayout.closeDrawers();}
 
                 } else if (title.equals(getString(R.string.politics))) {
                     setTitle(R.string.politics);
@@ -122,24 +120,4 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
-    //
-//
-//
-//
-//
-//
-//    public NewsItems change(NewsItems newsItems,Bitmap bitmap){
-//         String title=newsItems.getTitle();
-//         String date=newsItems.getDate();
-//         String wurl=newsItems.getWurl();
-//        String author=newsItems.getAuthor();
-//        return new NewsItems(title,date,wurl,author,bitmap);
-//    }
-//    public void setchange(ArrayList arrayList){
-//        newsItemsArrayList.clear();
-//        newsItemsArrayList.addAll(arrayList);
-//        lAdapter2.notifyDataSetChanged();
-//    }
 }

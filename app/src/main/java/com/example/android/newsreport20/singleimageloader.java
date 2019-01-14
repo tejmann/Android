@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class singleimageloader extends AsyncTaskLoader {
+    //loads the image from the given site.
     private String site;
 
 

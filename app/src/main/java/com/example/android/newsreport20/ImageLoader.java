@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class ImageLoader extends AsyncTaskLoader {
+    //Loads the images from the web
     private ArrayList<String> list;
 
     public ImageLoader(@NonNull Context context, ArrayList<String> list) {

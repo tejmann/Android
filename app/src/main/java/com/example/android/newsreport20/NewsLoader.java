@@ -22,6 +22,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class NewsLoader extends AsyncTaskLoader {
+    //Loads the news from the web in the form of JSON expression
     private String site;
 
     public NewsLoader(@NonNull Context context, String site) {

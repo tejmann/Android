@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class LAdapter2 extends ArrayAdapter<NewsItems> {
     public LAdapter2(Context context, ArrayList<NewsItems> newsitems){
+        //ListAdapter to work along with the listview
         super(context,0,newsitems);
 
     }
